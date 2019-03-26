@@ -1,0 +1,23 @@
+{
+  "Color" : {
+    "theme" : "#FF9898FF",
+    "accent" : "#1BCBFAFF",
+    "background" : "#666666"
+  },
+  "Font" : {
+    "title" : "AvenirNext-Bold",
+    "number" : "Courier",
+    "body" : "ChalkboardSE-Regular",
+    "code" : "Menlo-Regular"
+  },
+  "Layout" : {
+    "margin" : "16.0",
+    "padding" : "8.0",
+    "cornerRadius" : {
+      "small" : "4.0",
+      "regular" : "8.0",
+      "large" : "16.0",
+      "medium" : "12.0"
+    }
+  }
+}

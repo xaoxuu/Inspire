@@ -9,9 +9,9 @@
 /* Begin PBXBuildFile section */
 		CD07B95C2249BE0800C8698C /* Inspire.h in Headers */ = {isa = PBXBuildFile; fileRef = CD07B95A2249BE0800C8698C /* Inspire.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CD07B9632249BE2500C8698C /* Inspire.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD07B9622249BE2500C8698C /* Inspire.swift */; };
-		CD07B9652249BE5100C8698C /* FontUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD07B9642249BE5100C8698C /* FontUtilities.swift */; };
-		CD07B9672249BE6300C8698C /* ColorUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD07B9662249BE6300C8698C /* ColorUtilities.swift */; };
-		CD07B9692249BE7200C8698C /* LayoutUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD07B9682249BE7200C8698C /* LayoutUtilities.swift */; };
+		CD07B9652249BE5100C8698C /* InFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD07B9642249BE5100C8698C /* InFont.swift */; };
+		CD07B9672249BE6300C8698C /* InColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD07B9662249BE6300C8698C /* InColor.swift */; };
+		CD07B9692249BE7200C8698C /* InLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD07B9682249BE7200C8698C /* InLayout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,9 +19,9 @@
 		CD07B95A2249BE0800C8698C /* Inspire.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Inspire.h; sourceTree = "<group>"; };
 		CD07B95B2249BE0800C8698C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CD07B9622249BE2500C8698C /* Inspire.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Inspire.swift; sourceTree = "<group>"; };
-		CD07B9642249BE5100C8698C /* FontUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontUtilities.swift; sourceTree = "<group>"; };
-		CD07B9662249BE6300C8698C /* ColorUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorUtilities.swift; sourceTree = "<group>"; };
-		CD07B9682249BE7200C8698C /* LayoutUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutUtilities.swift; sourceTree = "<group>"; };
+		CD07B9642249BE5100C8698C /* InFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InFont.swift; sourceTree = "<group>"; };
+		CD07B9662249BE6300C8698C /* InColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InColor.swift; sourceTree = "<group>"; };
+		CD07B9682249BE7200C8698C /* InLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InLayout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,9 +56,9 @@
 			children = (
 				CD07B95A2249BE0800C8698C /* Inspire.h */,
 				CD07B9622249BE2500C8698C /* Inspire.swift */,
-				CD07B9642249BE5100C8698C /* FontUtilities.swift */,
-				CD07B9662249BE6300C8698C /* ColorUtilities.swift */,
-				CD07B9682249BE7200C8698C /* LayoutUtilities.swift */,
+				CD07B9642249BE5100C8698C /* InFont.swift */,
+				CD07B9662249BE6300C8698C /* InColor.swift */,
+				CD07B9682249BE7200C8698C /* InLayout.swift */,
 				CD07B95B2249BE0800C8698C /* Info.plist */,
 			);
 			path = Inspire;
@@ -143,10 +143,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CD07B9672249BE6300C8698C /* ColorUtilities.swift in Sources */,
-				CD07B9652249BE5100C8698C /* FontUtilities.swift in Sources */,
+				CD07B9672249BE6300C8698C /* InColor.swift in Sources */,
+				CD07B9652249BE5100C8698C /* InFont.swift in Sources */,
 				CD07B9632249BE2500C8698C /* Inspire.swift in Sources */,
-				CD07B9692249BE7200C8698C /* LayoutUtilities.swift in Sources */,
+				CD07B9692249BE7200C8698C /* InLayout.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
