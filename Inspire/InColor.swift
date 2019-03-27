@@ -19,10 +19,10 @@ public extension UIColor {
 }
 
 public extension UIColor {
-    static let ax_yellow = UIColor.init(red: 255/255, green: 235/255, blue: 59/255, alpha: 1)
-    static let ax_red = UIColor.init(red: 244/255, green: 67/255, blue: 54/255, alpha: 1)
-    static let ax_green = UIColor.init(red: 76/255, green: 175/255, blue: 80/255, alpha: 1)
-    static let ax_blue = UIColor.init(red: 82/255, green: 161/255, blue: 248/255, alpha: 1)
+    static let ax_yellow = UIColor(red: 255/255, green: 235/255, blue: 59/255, alpha: 1)
+    static let ax_red = UIColor(red: 244/255, green: 67/255, blue: 54/255, alpha: 1)
+    static let ax_green = UIColor(red: 76/255, green: 175/255, blue: 80/255, alpha: 1)
+    static let ax_blue = UIColor(red: 82/255, green: 161/255, blue: 248/255, alpha: 1)
     
     internal func darken(_ ratio: CGFloat = 0.5) -> UIColor {
         var red = CGFloat(0)
@@ -33,7 +33,7 @@ public extension UIColor {
         red = red * (1 - ratio)
         green = green * (1 - ratio)
         blue = blue * (1 - ratio)
-        return UIColor.init(red: red, green: green, blue: blue, alpha: alpha)
+        return UIColor(red: red, green: green, blue: blue, alpha: alpha)
     }
     
     internal func lighten(_ ratio: CGFloat = 0.5) -> UIColor {
@@ -45,7 +45,7 @@ public extension UIColor {
         red = red * (1 - ratio) + ratio
         green = green * (1 - ratio) + ratio
         blue = blue * (1 - ratio) + ratio
-        return UIColor.init(red: red, green: green, blue: blue, alpha: alpha)
+        return UIColor(red: red, green: green, blue: blue, alpha: alpha)
     }
     
     internal func textColor() -> UIColor {
@@ -73,7 +73,7 @@ public extension UIColor {
         }
     }
     
-    convenience init(hex: String) {
+    convenience init(_ hex: String) {
         func filter(hex: String) -> NSString{
             let set = NSCharacterSet.whitespacesAndNewlines
             var str = hex.trimmingCharacters(in: set).lowercased()
@@ -88,7 +88,7 @@ public extension UIColor {
         let length = hex.length
         guard length == 3 || length == 4 || length == 6 || length == 8 else {
             print("无效的hex")
-            self.init(hex: "000")
+            self.init("000")
             return
         }
         func floatFrom(_ hex: String) -> CGFloat {

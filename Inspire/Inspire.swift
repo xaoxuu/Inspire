@@ -13,9 +13,9 @@ public struct Inspire {
     public static var current = Inspire()
     
     public struct InColor {
-        public var theme = UIColor.init(hex: "#FF9898")
-        public var accent = UIColor.init(hex: "#1BCBFA")
-        public var background = UIColor.init(hex: "#EFEFEF")
+        public var theme = UIColor("#FF9898")
+        public var accent = UIColor("#1BCBFA")
+        public var background = UIColor("#EFEFEF")
     }
     public struct InFont {
         public enum Style: String {
@@ -134,35 +134,36 @@ public struct Inspire {
         /// 屏幕布局安全区域。
         /// 如果支持横屏，当改变屏幕方向后需要调用 updatedSafeArea() 重新获取
         public static var safeAreaInsets: UIEdgeInsets = {
-            return updatedSafeAreaInsets()
-        }()
-        /// 屏幕布局安全区域。
-        /// 如果支持横屏，当改变屏幕方向后需要调用 updatedSafeArea() 重新获取
-        public var safeAreaInsets: UIEdgeInsets = {
-            return updatedSafeAreaInsets()
+            return getCurrentSafeAreaInsets()
         }()
         
+        /// 屏幕布局安全区域。
+        /// 如果支持横屏，当改变屏幕方向后需要调用 updatedSafeArea() 重新获取
+        public var safeAreaInsets: UIEdgeInsets {
+            return Inspire.InLayout.safeAreaInsets
+        }
+        
+        static func getCurrentSafeAreaInsets() -> UIEdgeInsets {
+            debugPrint("重新获取当前屏幕安全区域")
+            var top = CGFloat(0), left = CGFloat(0), bottom = CGFloat(0), right = CGFloat(0)
+            if UIApplication.shared.statusBarOrientation == .portrait {
+                top = InLayout.DeviceConst.statusBarWindowHeight
+                bottom = InLayout.DeviceConst.bottomSafeAreaHeightOnPortrait
+            } else {
+                bottom = InLayout.DeviceConst.bottomSafeAreaHeightOnLandscape
+                left = InLayout.DeviceConst.statusBarWindowHeight
+                right = InLayout.DeviceConst.statusBarWindowHeight
+            }
+            let inset = UIEdgeInsets.init(top: top, left: left, bottom: bottom, right: right)
+            return inset
+        }
         /// 更新屏幕布局安全区域
         ///
         /// - Returns: 屏幕布局安全区域
         @discardableResult
         public static func updatedSafeAreaInsets() -> UIEdgeInsets {
-            debugPrint("重新获取当前屏幕安全区域")
-            var top = CGFloat(0), left = CGFloat(0), bottom = CGFloat(0), right = CGFloat(0)
-            if InLayout.DeviceConst.screenSize.isNewPhone {
-                if UIApplication.shared.statusBarOrientation == .portrait {
-                    top = InLayout.DeviceConst.statusBarWindowHeight
-                    bottom = InLayout.DeviceConst.bottomSafeAreaHeightOnPortrait
-                } else {
-                    bottom = InLayout.DeviceConst.bottomSafeAreaHeightOnLandscape
-                    left = InLayout.DeviceConst.statusBarWindowHeight
-                    right = InLayout.DeviceConst.statusBarWindowHeight
-                }
-            } else {
-                
-            }
-            let inset = UIEdgeInsets.init(top: top, left: left, bottom: bottom, right: right)
-            return inset
+            safeAreaInsets = getCurrentSafeAreaInsets()
+            return safeAreaInsets
         }
         
         /// 更新屏幕布局安全区域
@@ -190,6 +191,9 @@ public struct Inspire {
         /// 圆角
         public var cornerRadius = CornerRadius()
         
+        /// 行高
+        public var rowHeight = CGFloat(50)
+        
     }
 
     
@@ -212,9 +216,9 @@ public struct Inspire {
     public init(dictionary: [String: Any]) {
         
         if let dict = dictionary["Color"] as? [String: String] {
-            color.theme = UIColor.init(hex: dict["theme"] ?? "#000000")
-            color.accent = UIColor.init(hex: dict["accent"] ?? "#000000")
-            color.background = UIColor.init(hex: dict["background"] ?? "#000000")
+            color.theme = UIColor(dict["theme"] ?? "#000000")
+            color.accent = UIColor(dict["accent"] ?? "#000000")
+            color.background = UIColor(dict["background"] ?? "#000000")
         }
         if let dict = dictionary["Font"] as? [String: String] {
             font.title = dict["title"] ?? ""
