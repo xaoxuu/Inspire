@@ -9,7 +9,7 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '8.0'
 
   s.source_files = 'Inspire/**/*.swift'
-  s.resource_bundles = { 'Inspire' => ['Inspire/*.{xcassets,strings,xml,storyboard,xib,xcdatamodeld,gif,lproj}'] }
+  # s.resource_bundles = { 'Inspire' => ['Inspire/*.{xcassets,strings,xml,storyboard,xib,xcdatamodeld,gif,lproj}'] }
 
  # s.swift_version = '4.2'
   s.requires_arc = true
