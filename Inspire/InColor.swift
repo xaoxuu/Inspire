@@ -19,12 +19,8 @@ public extension UIColor {
 }
 
 public extension UIColor {
-    static let ax_yellow = UIColor(red: 255/255, green: 235/255, blue: 59/255, alpha: 1)
-    static let ax_red = UIColor(red: 244/255, green: 67/255, blue: 54/255, alpha: 1)
-    static let ax_green = UIColor(red: 76/255, green: 175/255, blue: 80/255, alpha: 1)
-    static let ax_blue = UIColor(red: 82/255, green: 161/255, blue: 248/255, alpha: 1)
     
-    internal func darken(_ ratio: CGFloat = 0.5) -> UIColor {
+    public func darken(_ ratio: CGFloat = 0.5) -> UIColor {
         var red = CGFloat(0)
         var green = CGFloat(0)
         var blue = CGFloat(0)
@@ -36,7 +32,7 @@ public extension UIColor {
         return UIColor(red: red, green: green, blue: blue, alpha: alpha)
     }
     
-    internal func lighten(_ ratio: CGFloat = 0.5) -> UIColor {
+    public func lighten(_ ratio: CGFloat = 0.5) -> UIColor {
         var red = CGFloat(0)
         var green = CGFloat(0)
         var blue = CGFloat(0)
@@ -48,7 +44,7 @@ public extension UIColor {
         return UIColor(red: red, green: green, blue: blue, alpha: alpha)
     }
     
-    internal func textColor() -> UIColor {
+    public func textColor() -> UIColor {
         func isLightColor() -> Bool {
             if self == UIColor.clear {
                 return true
@@ -73,7 +69,7 @@ public extension UIColor {
         }
     }
     
-    convenience init(_ hex: String) {
+    public convenience init(_ hex: String) {
         func filter(hex: String) -> NSString{
             let set = NSCharacterSet.whitespacesAndNewlines
             var str = hex.trimmingCharacters(in: set).lowercased()
@@ -123,7 +119,8 @@ public extension UIColor {
         }
         self.init(red: r, green: g, blue: b, alpha: a)
     }
-    func hexString() -> String {
+    
+    public func hexString() -> String {
         func maxHexValue() -> CGFloat {
             var max = Float(0)
             Scanner(string: "0xff").scanHexFloat(&max)
