@@ -35,12 +35,34 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        for str in UIFont.familyNames {
-            print(UIFont.fontNames(forFamilyName: str))
-        }
+//        for str in UIFont.familyNames {
+//            print(UIFont.fontNames(forFamilyName: str))
+//        }
+//        view.backgroundColor = UIColor.failure
+        Inspire.restore("theme")
+        
         view.backgroundColor = Inspire.current.color.background
+        
+        
     }
 
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        Inspire.current.color.failure = UIColor.lightGray
+//        view.backgroundColor = UIColor.failure
+        
+//        print(Inspire.current.layout.safeAreaInsets)
+//        print(Inspire.current.layout.updatedSafeAreaInsets)
+//        print(Inspire.current.layout.safeAreaInsets)
+        
+        view.backgroundColor = Inspire.current.color.background
+        
+        DispatchQueue.main.asyncAfter(deadline: .now()+2) {
+            Inspire.current.color.background = Inspire.current.color.accent
+            Inspire.current.cache(named: "theme")
+            self.view.backgroundColor = Inspire.current.color.background
+        }
+    }
 
 }
 

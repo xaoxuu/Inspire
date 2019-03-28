@@ -12,14 +12,34 @@ import UIKit
 // MARK: - 快速get
 public extension UIColor {
     
-    public static let theme = Inspire.current.color.theme
-    public static let accent = Inspire.current.color.accent
-    public static let background = Inspire.current.color.background
+    public static var theme: UIColor {
+        return Inspire.current.color.theme
+    }
+    public static var accent: UIColor {
+        return Inspire.current.color.accent
+    }
+    public static var background: UIColor {
+        return Inspire.current.color.background
+    }
+    public static var success: UIColor {
+        return Inspire.current.color.success
+    }
+    public static var warning: UIColor {
+        return Inspire.current.color.warning
+    }
+    public static var failure: UIColor {
+        return Inspire.current.color.failure
+    }
     
 }
 
+// MARK: - 颜色工具
 public extension UIColor {
     
+    /// 变深
+    ///
+    /// - Parameter ratio: 比例
+    /// - Returns: 变深后的颜色
     public func darken(_ ratio: CGFloat = 0.5) -> UIColor {
         var red = CGFloat(0)
         var green = CGFloat(0)
@@ -32,6 +52,10 @@ public extension UIColor {
         return UIColor(red: red, green: green, blue: blue, alpha: alpha)
     }
     
+    /// 变浅
+    ///
+    /// - Parameter ratio: 比例
+    /// - Returns: 变浅后的颜色
     public func lighten(_ ratio: CGFloat = 0.5) -> UIColor {
         var red = CGFloat(0)
         var green = CGFloat(0)
@@ -44,7 +68,8 @@ public extension UIColor {
         return UIColor(red: red, green: green, blue: blue, alpha: alpha)
     }
     
-    public func textColor() -> UIColor {
+    /// 当前颜色中的文字适合的颜色（参考）
+    public var forText: UIColor {
         func isLightColor() -> Bool {
             if self == UIColor.clear {
                 return true
@@ -69,6 +94,10 @@ public extension UIColor {
         }
     }
     
+    
+    /// 根据hex字符串创建颜色
+    ///
+    /// - Parameter hex: hex字符串
     public convenience init(_ hex: String) {
         func filter(hex: String) -> NSString{
             let set = NSCharacterSet.whitespacesAndNewlines
@@ -87,7 +116,7 @@ public extension UIColor {
             self.init("000")
             return
         }
-        func floatFrom(_ hex: String) -> CGFloat {
+        func floatValue(from hex: String) -> CGFloat {
             var result = Float(0)
             Scanner(string: "0x"+hex).scanHexFloat(&result)
             var maxStr = "0xf"
@@ -100,7 +129,7 @@ public extension UIColor {
             return CGFloat(result)
         }
         
-        func substring(_ hex: NSString, loc: Int) -> String {
+        func substring(of hex: NSString, loc: Int) -> String {
             if length == 3 || length == 4 {
                 return hex.substring(with: NSRange.init(location: loc, length: 1))
             } else if length == 6 || length == 8 {
@@ -110,17 +139,18 @@ public extension UIColor {
             }
         }
         
-        let r = floatFrom(substring(hex, loc: 0))
-        let g = floatFrom(substring(hex, loc: 1))
-        let b = floatFrom(substring(hex, loc: 2))
+        let r = floatValue(from: substring(of: hex, loc: 0))
+        let g = floatValue(from: substring(of: hex, loc: 1))
+        let b = floatValue(from: substring(of: hex, loc: 2))
         var a = CGFloat(1)
         if length == 4 || length == 8 {
-            a = floatFrom(substring(hex, loc: 3))
+            a = floatValue(from: substring(of: hex, loc: 3))
         }
         self.init(red: r, green: g, blue: b, alpha: a)
     }
     
-    public func hexString() -> String {
+    /// 生成当前颜色的hex字符串
+    public var hexString: String {
         func maxHexValue() -> CGFloat {
             var max = Float(0)
             Scanner(string: "0xff").scanHexFloat(&max)

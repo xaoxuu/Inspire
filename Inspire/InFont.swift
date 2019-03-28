@@ -10,7 +10,7 @@ import UIKit
 
 public extension UIFont {
     
-    class func getFontName(_ style: Inspire.InFont.Style = .body) -> String {
+    internal class func getFontName(_ style: Inspire.InFont.Style = .body) -> String {
         let font = Inspire.current.font
         switch style {
         case .title:

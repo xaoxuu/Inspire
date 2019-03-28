@@ -10,13 +10,32 @@ import UIKit
 
 public struct Inspire {
 
+    /// 当前实例
     public static var current = Inspire()
     
+    /// 颜色
     public struct InColor {
-        public var theme = UIColor("#FF9898")
+        
+        /// 主题色
+        public var theme = UIColor("#FF6868")
+        
+        /// 强调色
         public var accent = UIColor("#1BCBFA")
+        
+        /// 背景色
         public var background = UIColor("#EFEFEF")
+        
+        /// 成功的颜色
+        public var success = UIColor("#34C749")
+        
+        /// 警告的颜色
+        public var warning = UIColor("#FDBD41")
+        
+        /// 失败的颜色
+        public var failure = UIColor("#F44336")
     }
+    
+    /// 字体
     public struct InFont {
         public enum Style: String {
             case title = "title"
@@ -25,154 +44,19 @@ public struct Inspire {
             case code = "code"
         }
         
+        /// 标题部分字体名
         public var title = "AvenirNext-Bold"
+        /// 正文部分字体名
         public var body = "ChalkboardSE-Regular"
+        /// 数字部分字体名
         public var number = "Courier"
+        /// 代码部分字体名
         public var code = "Menlo-Regular"
         
     }
+    
+    /// 布局
     public struct InLayout {
-        
-        internal enum ScreenSize: Int {
-            case unknown
-            case iPhone3_5
-            case iPhone4_0
-            case iPhone4_7
-            case iPhone5_5
-            case iPhone5_8
-            case iPhone6_1
-            case iPhone6_5
-            case iPad7_9
-            case iPad9_7
-            case iPad10_5
-            case iPad11
-            case iPad12_9
-        }
-        
-        /// 设备常量
-        public struct DeviceConst {
-            
-            /// 设备屏幕尺寸
-            internal static let screenSize: ScreenSize = {
-                if UIDevice.current.userInterfaceIdiom == .pad {
-                    // FIXME: 适配iPad
-                    if let s = UIScreen.main.currentMode?.size {
-                        switch s {
-                        case CGSize(width: 1536, height: 2048):
-                            return ScreenSize.iPad7_9
-                        case CGSize(width: 1536, height: 2048):
-                            return ScreenSize.iPad9_7
-                        case CGSize(width: 1668, height: 2224):
-                            return ScreenSize.iPad10_5
-                        case CGSize(width: 1668, height: 2388):
-                            return ScreenSize.iPad11
-                        case CGSize(width: 2048, height: 2732):
-                            return ScreenSize.iPad12_9
-                        default:
-                            break
-                        }
-                    }
-                    return ScreenSize.iPad9_7
-                } else if UIDevice.current.userInterfaceIdiom == .phone {
-                    if let s = UIScreen.main.currentMode?.size {
-                        switch s {
-                        case CGSize(width: 320, height: 480), CGSize(width: 640, height: 960):
-                            return ScreenSize.iPhone3_5
-                        case CGSize(width: 640, height: 1136):
-                            return ScreenSize.iPhone4_0
-                        case CGSize(width: 750, height: 1334):
-                            return ScreenSize.iPhone4_7
-                        case CGSize(width: 1242, height: 2208):
-                            return ScreenSize.iPhone5_5
-                        case CGSize(width: 1125, height: 2436):
-                            return ScreenSize.iPhone5_8
-                        case CGSize(width: 828, height: 1792):
-                            return ScreenSize.iPhone6_1
-                        case CGSize(width: 1242, height: 2688):
-                            return ScreenSize.iPhone6_5
-                        default:
-                            break
-                        }
-                    } else {
-                        return ScreenSize.iPhone4_7
-                    }
-                }
-                return ScreenSize.unknown
-            }()
-            
-            /// 取决于设备，无论横竖屏、是否隐藏，此值不变。要想取当前值，用SafeArea实例
-            public static let statusBarWindowHeight: CGFloat = {
-                if let w = UIApplication.shared.value(forKey: "statusBarWindow") as? UIWindow {
-                    if let b = w.value(forKey: "statusBar") as? UIView {
-                        return b.frame.size.height
-                    }
-                }
-                return 20
-            }()
-            
-            /// 竖屏时底部的安全区域高度
-            public static let bottomSafeAreaHeightOnPortrait: CGFloat = {
-                if screenSize.isNewPhone {
-                    return 34
-                } else if screenSize == .iPad11 {
-                    return 21
-                }
-                return 0
-            }()
-            
-            /// 横屏时底部的安全区域高度
-            public static let bottomSafeAreaHeightOnLandscape: CGFloat = {
-                if screenSize.isNewPhone {
-                    return 21
-                } else if screenSize == .iPad11 {
-                    return 21
-                }
-                return 0
-            }()
-        }
-        
-        /// 屏幕布局安全区域。
-        /// 如果支持横屏，当改变屏幕方向后需要调用 updatedSafeArea() 重新获取
-        public static var safeAreaInsets: UIEdgeInsets = {
-            return getCurrentSafeAreaInsets()
-        }()
-        
-        /// 屏幕布局安全区域。
-        /// 如果支持横屏，当改变屏幕方向后需要调用 updatedSafeArea() 重新获取
-        public var safeAreaInsets: UIEdgeInsets {
-            return Inspire.InLayout.safeAreaInsets
-        }
-        
-        static func getCurrentSafeAreaInsets() -> UIEdgeInsets {
-            debugPrint("重新获取当前屏幕安全区域")
-            var top = CGFloat(0), left = CGFloat(0), bottom = CGFloat(0), right = CGFloat(0)
-            if UIApplication.shared.statusBarOrientation == .portrait {
-                top = InLayout.DeviceConst.statusBarWindowHeight
-                bottom = InLayout.DeviceConst.bottomSafeAreaHeightOnPortrait
-            } else {
-                bottom = InLayout.DeviceConst.bottomSafeAreaHeightOnLandscape
-                left = InLayout.DeviceConst.statusBarWindowHeight
-                right = InLayout.DeviceConst.statusBarWindowHeight
-            }
-            let inset = UIEdgeInsets.init(top: top, left: left, bottom: bottom, right: right)
-            return inset
-        }
-        /// 更新屏幕布局安全区域
-        ///
-        /// - Returns: 屏幕布局安全区域
-        @discardableResult
-        public static func updatedSafeAreaInsets() -> UIEdgeInsets {
-            safeAreaInsets = getCurrentSafeAreaInsets()
-            return safeAreaInsets
-        }
-        
-        /// 更新屏幕布局安全区域
-        ///
-        /// - Returns: 屏幕布局安全区域
-        @discardableResult
-        public func updatedSafeAreaInsets() -> UIEdgeInsets {
-            return InLayout.updatedSafeAreaInsets()
-        }
         
         /// 圆角
         public struct CornerRadius {
@@ -206,25 +90,35 @@ public struct Inspire {
     /// 布局
     public var layout = InLayout()
     
+    /// 创建默认实例
     public init() {
-        debugPrint("init")
+        
     }
-   
+    
+    
+}
+
+
+// MARK: - 多主题
+extension Inspire {
+    
     /// 根据字典来创建主题模型
     ///
     /// - Parameter dictionary: 字典
-    public init(dictionary: [String: Any]) {
-        
+    public init(_ dictionary: [String: Any]) {
         if let dict = dictionary["Color"] as? [String: String] {
-            color.theme = UIColor(dict["theme"] ?? "#000000")
-            color.accent = UIColor(dict["accent"] ?? "#000000")
-            color.background = UIColor(dict["background"] ?? "#000000")
+            color.theme = UIColor(dict["theme"] ?? "#FF6868")
+            color.accent = UIColor(dict["accent"] ?? "#1BCBFA")
+            color.background = UIColor(dict["background"] ?? "#EFEFEF")
+            color.success = UIColor(dict["background"] ?? "#34C749")
+            color.warning = UIColor(dict["warning"] ?? "#FDBD41")
+            color.failure = UIColor(dict["failure"] ?? "#F44336")
         }
         if let dict = dictionary["Font"] as? [String: String] {
-            font.title = dict["title"] ?? ""
-            font.body = dict["body"] ?? ""
-            font.number = dict["number"] ?? ""
-            font.code = dict["code"] ?? ""
+            font.title = dict["title"] ?? "Courier"
+            font.body = dict["body"] ?? "Courier"
+            font.number = dict["number"] ?? "Courier"
+            font.code = dict["code"] ?? "Courier"
         }
         if let dict = dictionary["Layout"] as? [String: Any] {
             if let str = dict["padding"] as? String {
@@ -235,6 +129,11 @@ public struct Inspire {
             if let str = dict["margin"] as? String {
                 if let d = Double(str) {
                     layout.margin = CGFloat(d)
+                }
+            }
+            if let str = dict["rowHeight"] as? String {
+                if let d = Double(str) {
+                    layout.rowHeight = CGFloat(d)
                 }
             }
             if let dict2 = dict["cornerRadius"] as? [String: String] {
@@ -261,7 +160,6 @@ public struct Inspire {
             }
             
         }
-        
     }
     
     /// 应用主题
@@ -280,12 +178,16 @@ public struct Inspire {
                         InFont.Style.body.rawValue: font.body,
                         InFont.Style.number.rawValue: font.number,
                         InFont.Style.code.rawValue: font.code]
-        let colorDict = ["theme": color.theme.hexString(),
-                         "accent": color.accent.hexString(),
-                         "background": color.background.hexString()]
+        let colorDict = ["theme": color.theme.hexString,
+                         "accent": color.accent.hexString,
+                         "background": color.background.hexString,
+                         "success": color.success.hexString,
+                         "warning": color.warning.hexString,
+                         "failure": color.failure.hexString]
         var layoutDict = [String: Any]()
         layoutDict["padding"] = String(Double(layout.padding))
         layoutDict["margin"] = String(Double(layout.margin))
+        layoutDict["rowHeight"] = String(Double(layout.rowHeight))
         let cornerRadiusDict = ["large": String(Double(layout.cornerRadius.large)),
                                 "medium": String(Double(layout.cornerRadius.medium)),
                                 "regular": String(Double(layout.cornerRadius.regular)),
@@ -296,6 +198,5 @@ public struct Inspire {
         result["Layout"] = layoutDict
         return result
     }
-    
     
 }
