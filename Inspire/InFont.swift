@@ -29,7 +29,7 @@ public extension UIFont {
         return UIFont.init(descriptor: desc, size: size)
     }
     
-    public class func bold(_ size: CGFloat, for style: Inspire.InFont.Style = .body) -> UIFont? {
+    public class func bold(_ size: CGFloat, for style: Inspire.InFont.Style = .body) -> UIFont {
         return regular(size, for: style).boldFont()
     }
     
