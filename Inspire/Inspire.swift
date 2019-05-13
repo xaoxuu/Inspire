@@ -45,13 +45,16 @@ public struct Inspire {
         }
         
         /// 标题部分字体名
-        public var title = "AvenirNext-Bold"
+        public var title = "ChalkboardSE-Bold"
         /// 正文部分字体名
         public var body = "ChalkboardSE-Regular"
         /// 数字部分字体名
         public var number = "Courier"
         /// 代码部分字体名
         public var code = "Menlo-Regular"
+        
+        /// 字号缩放倍数
+        public var scale = CGFloat(1)
         
     }
     
@@ -119,6 +122,11 @@ extension Inspire {
             font.body = dict["body"] ?? "Courier"
             font.number = dict["number"] ?? "Courier"
             font.code = dict["code"] ?? "Courier"
+            if let str = dict["scale"] {
+                if let d = Double(str) {
+                    font.scale = CGFloat(d)
+                }
+            }
         }
         if let dict = dictionary["Layout"] as? [String: Any] {
             if let str = dict["padding"] as? String {
@@ -177,7 +185,8 @@ extension Inspire {
         let fontDict = [InFont.Style.title.rawValue: font.title,
                         InFont.Style.body.rawValue: font.body,
                         InFont.Style.number.rawValue: font.number,
-                        InFont.Style.code.rawValue: font.code]
+                        InFont.Style.code.rawValue: font.code,
+                        "scale": String(Double(font.scale))]
         let colorDict = ["theme": color.theme.hexString,
                          "accent": color.accent.hexString,
                          "background": color.background.hexString,

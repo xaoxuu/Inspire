@@ -35,7 +35,7 @@ public extension Inspire {
     /// 缓存当前主题
     ///
     /// - Parameter named: 主题名
-    public func cache(named: String = "theme"){
+    func cache(named: String = "theme"){
         do {
             let data = try JSONSerialization.data(withJSONObject: export(), options: .prettyPrinted)
             let url = URL.init(fileURLWithPath: Inspire.cachePath(for: named+".json"))
@@ -48,14 +48,14 @@ public extension Inspire {
     /// 从缓存中恢复主题
     ///
     /// - Parameter named: 主题名
-    public static func restore(_ named: String = "theme"){
+    static func restore(_ named: String = "theme"){
         Inspire.apply(Inspire(named))
     }
     
     /// 根据缓存的主题名创建主题
     ///
     /// - Parameter named: 缓存的主题名
-    public init(_ named: String = "theme") {
+    init(_ named: String = "theme") {
         do {
             let data = try Data.init(contentsOf: URL.init(fileURLWithPath: Inspire.cachePath(for: named+".json")))
             let dict = try JSONSerialization.jsonObject(with: data, options: .mutableContainers)

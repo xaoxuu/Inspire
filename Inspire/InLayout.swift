@@ -12,7 +12,7 @@ import UIKit
 public extension Inspire.InLayout{
     
     /// 设备常量
-    public struct DeviceConst {
+    struct DeviceConst {
         
         /// 屏幕尺寸
         internal enum ScreenSize: Int {
@@ -137,13 +137,13 @@ public extension Inspire.InLayout{
     
     /// 屏幕布局安全区域。
     /// 如果支持横屏，当改变屏幕方向后需要调用 updatedSafeAreaInsets 重新获取
-    public static var safeAreaInsets: UIEdgeInsets = {
+    static var safeAreaInsets: UIEdgeInsets = {
         return getCurrentSafeAreaInsets()
     }()
     
     /// 屏幕布局安全区域。
     /// 如果支持横屏，当改变屏幕方向后需要调用 updatedSafeAreaInsets 重新获取
-    public var safeAreaInsets: UIEdgeInsets {
+    var safeAreaInsets: UIEdgeInsets {
         return Inspire.InLayout.safeAreaInsets
     }
     
@@ -164,14 +164,14 @@ public extension Inspire.InLayout{
 
     /// 获取当前状态下的屏幕安全区域，此值会更新至safeAreaInsets。
     /// 一般在屏幕旋转之后调用一次。
-    public static var updatedSafeAreaInsets: UIEdgeInsets {
+    static var updatedSafeAreaInsets: UIEdgeInsets {
         safeAreaInsets = getCurrentSafeAreaInsets()
         return safeAreaInsets
     }
     
     /// 获取当前状态下的屏幕安全区域，此值会更新至safeAreaInsets。
     /// 一般在屏幕旋转之后调用一次。
-    public var updatedSafeAreaInsets: UIEdgeInsets {
+    var updatedSafeAreaInsets: UIEdgeInsets {
         return Inspire.InLayout.updatedSafeAreaInsets
     }
     
