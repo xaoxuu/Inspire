@@ -24,20 +24,23 @@ public extension UIFont {
         }
     }
     
-    class func regular(_ size: CGFloat, for style: Inspire.InFont.Style = .body) -> UIFont {
+    public class func regular(_ size: CGFloat, for style: Inspire.InFont.Style = .body) -> UIFont {
         let desc = UIFontDescriptor.init(fontAttributes: [.name : getFontName(style)])
         return UIFont.init(descriptor: desc, size: size)
     }
     
-    class func bold(_ size: CGFloat, for style: Inspire.InFont.Style = .body) -> UIFont {
+    public class func bold(_ size: CGFloat, for style: Inspire.InFont.Style = .body) -> UIFont {
         return regular(size, for: style).boldFont()
     }
     
-    func boldFont() -> UIFont {
+    public func boldFont() -> UIFont {
         let fontDesc = fontDescriptor
         let fontDescriptorSymbolicTraits = UIFontDescriptor.SymbolicTraits.init(rawValue:(fontDesc.symbolicTraits.rawValue | UIFontDescriptor.SymbolicTraits.traitBold.rawValue))
-        let boldFontDesc = fontDesc.withSymbolicTraits(fontDescriptorSymbolicTraits)
-        return UIFont.init(descriptor: boldFontDesc!, size: pointSize)
+        if let boldFontDesc = fontDesc.withSymbolicTraits(fontDescriptorSymbolicTraits) {
+            return UIFont.init(descriptor: boldFontDesc, size: pointSize)
+        } else {
+            return self
+        }
     }
     
 }
