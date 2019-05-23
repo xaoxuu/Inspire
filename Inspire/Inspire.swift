@@ -113,7 +113,7 @@ extension Inspire {
             color.theme = UIColor(dict["theme"] ?? "#FF6868")
             color.accent = UIColor(dict["accent"] ?? "#1BCBFA")
             color.background = UIColor(dict["background"] ?? "#EFEFEF")
-            color.success = UIColor(dict["background"] ?? "#34C749")
+            color.success = UIColor(dict["success"] ?? "#34C749")
             color.warning = UIColor(dict["warning"] ?? "#FDBD41")
             color.failure = UIColor(dict["failure"] ?? "#F44336")
         }

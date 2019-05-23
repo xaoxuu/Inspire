@@ -112,7 +112,7 @@ public extension UIColor {
         let hex = filter(hex: hex)
         let length = hex.length
         guard length == 3 || length == 4 || length == 6 || length == 8 else {
-            print("无效的hex")
+            debugPrint("无效的hex")
             self.init("000")
             return
         }
@@ -167,7 +167,6 @@ public extension UIColor {
         let bb = String(format: "%02X", UInt32(b*maxHexValue()))
         let aa = String(format: "%02X", UInt32(a*maxHexValue()))
         
-        print(rr,gg,bb,aa)
         return "#" + rr + gg + bb + aa
     }
 }

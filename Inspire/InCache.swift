@@ -22,12 +22,12 @@ public extension Inspire {
                 do {
                     try FileManager.default.createDirectory(atPath: path, withIntermediateDirectories: true, attributes: nil)
                 } catch {
-                    print(error.localizedDescription)
+                    debugPrint(error.localizedDescription)
                 }
             }
             return NSString.init(string: path).appendingPathComponent(file) as String
         } else {
-            print("获取文档路径失败！")
+            debugPrint("获取文档路径失败！")
             return ""
         }
     }
@@ -41,7 +41,7 @@ public extension Inspire {
             let url = URL.init(fileURLWithPath: Inspire.cachePath(for: named+".json"))
             try data.write(to: url, options: .atomic)
         } catch {
-            print(error.localizedDescription)
+            debugPrint(error.localizedDescription)
         }
     }
     
@@ -65,7 +65,7 @@ public extension Inspire {
                 self.init()
             }
         } catch {
-            print(error.localizedDescription)
+            debugPrint(error.localizedDescription)
             self.init()
         }
     }
