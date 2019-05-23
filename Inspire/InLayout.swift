@@ -9,13 +9,13 @@
 import UIKit
 
 // MARK: - 设备布局常量
-public extension Inspire.InLayout{
+public extension Inspire.InLayout {
     
     /// 设备常量
-    struct DeviceConst {
+    public struct InDevice {
         
         /// 屏幕尺寸
-        internal enum ScreenSize: Int {
+        public enum ScreenSize: Int {
             case unknown
             case iPhone3_5
             case iPhone4_0
@@ -33,7 +33,7 @@ public extension Inspire.InLayout{
             /// 是否是全面屏手机
             public var isNewPhone: Bool {
                 if UIDevice.current.userInterfaceIdiom == .phone {
-                    let ss = Inspire.InLayout.DeviceConst.screenSize
+                    let ss = Inspire.InLayout.InDevice.screenSize
                     if ss == .iPhone3_5 || ss == .iPhone4_0 || ss == .iPhone4_7 || ss == .iPhone5_5 {
                         return false
                     } else {
@@ -45,7 +45,7 @@ public extension Inspire.InLayout{
             /// 是否是全面屏iPad
             public var isNewPad: Bool {
                 if UIDevice.current.userInterfaceIdiom == .pad {
-                    let ss = Inspire.InLayout.DeviceConst.screenSize
+                    let ss = Inspire.InLayout.InDevice.screenSize
                     if ss == .iPad7_9 || ss == .iPad9_7 || ss == .iPad10_5 || ss == .iPad12_9 {
                         return false
                     } else {
@@ -57,7 +57,7 @@ public extension Inspire.InLayout{
         }
         
         /// 屏幕尺寸
-        internal static let screenSize: ScreenSize = {
+        public static let screenSize: ScreenSize = {
             if UIDevice.current.userInterfaceIdiom == .pad {
                 // FIXME: 适配iPad
                 if let s = UIScreen.main.currentMode?.size {
@@ -133,48 +133,101 @@ public extension Inspire.InLayout{
             }
             return 0
         }()
+        
+    }
+    
+    
+}
+
+public extension Inspire {
+    public typealias InScreen = Inspire.InLayout.InScreen
+    public typealias InDevice = Inspire.InLayout.InDevice
+}
+
+
+// MARK: - 屏幕布局尺寸
+public extension Inspire.InLayout.InScreen {
+    
+    public var bounds: CGRect {
+        return UIScreen.main.bounds
+    }
+    public var size: CGSize {
+        return UIScreen.main.bounds.size
+    }
+    public var width: CGFloat {
+        return UIScreen.main.bounds.size.width
+    }
+    public var height: CGFloat {
+        return UIScreen.main.bounds.size.height
     }
     
     /// 屏幕布局安全区域。
     /// 如果支持横屏，当改变屏幕方向后需要调用 updatedSafeAreaInsets 重新获取
-    static var safeAreaInsets: UIEdgeInsets = {
+    private static var safeAreaInsets: UIEdgeInsets = {
         return getCurrentSafeAreaInsets()
     }()
     
     /// 屏幕布局安全区域。
     /// 如果支持横屏，当改变屏幕方向后需要调用 updatedSafeAreaInsets 重新获取
     var safeAreaInsets: UIEdgeInsets {
-        return Inspire.InLayout.safeAreaInsets
+        return Inspire.InLayout.InScreen.safeAreaInsets
     }
     
+    /// 获取当前屏幕安全区域
+    ///
+    /// - Returns: 当前屏幕安全区域
     private static func getCurrentSafeAreaInsets() -> UIEdgeInsets {
         debugPrint("获取当前屏幕安全区域")
         var top = CGFloat(0), left = CGFloat(0), bottom = CGFloat(0), right = CGFloat(0)
         if UIApplication.shared.statusBarOrientation == .portrait {
-            top = DeviceConst.statusBarWindowHeight
-            bottom = DeviceConst.bottomSafeAreaHeightOnPortrait
+            top = Inspire.InLayout.InDevice.statusBarWindowHeight
+            bottom = Inspire.InLayout.InDevice.bottomSafeAreaHeightOnPortrait
         } else {
-            bottom = DeviceConst.bottomSafeAreaHeightOnLandscape
-            left = DeviceConst.statusBarWindowHeight
-            right = DeviceConst.statusBarWindowHeight
+            bottom = Inspire.InLayout.InDevice.bottomSafeAreaHeightOnLandscape
+            left = Inspire.InLayout.InDevice.statusBarWindowHeight
+            right = Inspire.InLayout.InDevice.statusBarWindowHeight
         }
         let inset = UIEdgeInsets.init(top: top, left: left, bottom: bottom, right: right)
         return inset
     }
-
+    
     /// 获取当前状态下的屏幕安全区域，此值会更新至safeAreaInsets。
     /// 一般在屏幕旋转之后调用一次。
-    static var updatedSafeAreaInsets: UIEdgeInsets {
-        safeAreaInsets = getCurrentSafeAreaInsets()
+    private static var updatedSafeAreaInsets: UIEdgeInsets {
+        safeAreaInsets = Inspire.InLayout.InScreen.getCurrentSafeAreaInsets()
         return safeAreaInsets
     }
     
     /// 获取当前状态下的屏幕安全区域，此值会更新至safeAreaInsets。
     /// 一般在屏幕旋转之后调用一次。
-    var updatedSafeAreaInsets: UIEdgeInsets {
-        return Inspire.InLayout.updatedSafeAreaInsets
+    public var updatedSafeAreaInsets: UIEdgeInsets {
+        return Inspire.InLayout.InScreen.updatedSafeAreaInsets
+    }
+    
+    /// 状态栏尺寸
+    public var statusBar: CGSize {
+        return CGSize.init(width: width, height: safeAreaInsets.top)
+    }
+    
+    /// 导航栏尺寸（不含状态栏）
+    public var navBar: CGSize {
+        return CGSize.init(width: UIScreen.main.bounds.size.width, height: 44)
+    }
+    
+    /// 状态栏+导航栏区域尺寸
+    public var topBar: CGSize {
+        return CGSize.init(width: width, height: safeAreaInsets.top + 44)
+    }
+    
+    /// TabBar尺寸
+    public var tabBar: CGSize {
+        return CGSize.init(width: width, height: 49)
+    }
+    
+    /// TabBar+底部安全区域尺寸
+    public var bottomBar: CGSize {
+        return CGSize.init(width: width, height: safeAreaInsets.bottom + 49)
     }
     
     
 }
-

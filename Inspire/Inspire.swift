@@ -11,7 +11,16 @@ import UIKit
 public struct Inspire {
 
     /// 当前实例
-    public static var current = Inspire()
+    public static var shared = Inspire()
+    /// 当前实例
+    public static var current: Inspire {
+        get {
+            return shared
+        }
+        set {
+            shared = newValue
+        }
+    }
     
     /// 颜色
     public struct InColor {
@@ -37,6 +46,13 @@ public struct Inspire {
     
     /// 字体
     public struct InFont {
+        
+        /// 字体
+        ///
+        /// - title: 标题部分字体名
+        /// - body: 正文部分字体名
+        /// - number: 数字部分字体名
+        /// - code: 代码部分字体名
         public enum Style: String {
             case title = "title"
             case body = "body"
@@ -81,9 +97,12 @@ public struct Inspire {
         /// 行高
         public var rowHeight = CGFloat(50)
         
+        /// 屏幕
+        public struct InScreen {}
+        
     }
 
-    
+
     /// 颜色
     public var color = InColor()
     
@@ -92,6 +111,9 @@ public struct Inspire {
     
     /// 布局
     public var layout = InLayout()
+    
+    /// 常量
+    public var screen = InLayout.InScreen()
     
     /// 创建默认实例
     public init() {
@@ -174,7 +196,7 @@ extension Inspire {
     ///
     /// - Parameter ins: 主题模型
     public static func apply(_ ins: Inspire) {
-        current = ins
+        shared = ins
     }
     
     /// 导出主题

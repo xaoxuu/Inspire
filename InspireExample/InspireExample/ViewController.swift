@@ -39,9 +39,16 @@ class ViewController: UIViewController {
 //            print(UIFont.fontNames(forFamilyName: str))
 //        }
 //        view.backgroundColor = UIColor.failure
-        Inspire.restore("theme")
+        Inspire.restore()
         
         view.backgroundColor = Inspire.current.color.background
+        
+        
+//        ins.const.safeAreaInsets.bottom
+//        ins.const.topBarHeight
+//        ins.layout.screen.height
+//        ins.const.safeAreaInsets.bottom
+//        ins.layout.screen
         
         
     }
@@ -55,13 +62,23 @@ class ViewController: UIViewController {
 //        print(Inspire.current.layout.updatedSafeAreaInsets)
 //        print(Inspire.current.layout.safeAreaInsets)
         
-        view.backgroundColor = Inspire.current.color.background
+//        view.backgroundColor = Inspire.current.color.background
+//
+//        DispatchQueue.main.asyncAfter(deadline: .now()+2) {
+//            Inspire.current.color.background = Inspire.current.color.accent
+//            Inspire.current.cache()
+//            self.view.backgroundColor = Inspire.current.color.background
+//        }
+        let ins = Inspire.current
+        print(Inspire.current.screen.updatedSafeAreaInsets)
+        print("safeAreaInsets", ins.screen.safeAreaInsets)
+        print("bounds", ins.screen.bounds)
+        print("navBar", ins.screen.navBar)
+        print("statusBar", ins.screen.statusBar)
+        print("topBar", ins.screen.topBar)
+        print("tabBar", ins.screen.tabBar) 
+        print("bottomBar", ins.screen.bottomBar)
         
-        DispatchQueue.main.asyncAfter(deadline: .now()+2) {
-            Inspire.current.color.background = Inspire.current.color.accent
-            Inspire.current.cache(named: "theme")
-            self.view.backgroundColor = Inspire.current.color.background
-        }
     }
 
 }

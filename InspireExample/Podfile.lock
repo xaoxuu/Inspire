@@ -1,6 +1,6 @@
 PODS:
   - AXKit (0.3.10)
-  - Inspire (1.0.2)
+  - Inspire (1.0.3)
 
 DEPENDENCIES:
   - AXKit (= 0.3.10)
@@ -12,7 +12,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   AXKit: ea0bc94ddf3827f004521da25aecee91b480fc97
-  Inspire: e4ea551d768115fe06b8c2f053a1b01269eab35c
+  Inspire: 80aef9895e85ab8a0a65ffff4b86d91f220a55ce
 
 PODFILE CHECKSUM: ebc38e09174ee202b0239e1a7123cb86f7622591
 

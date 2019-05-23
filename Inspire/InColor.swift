@@ -12,21 +12,32 @@ import UIKit
 // MARK: - 快速get
 public extension UIColor {
     
+    /// 主题色
     static var theme: UIColor {
         return Inspire.current.color.theme
     }
+    
+    /// 强调色
     static var accent: UIColor {
         return Inspire.current.color.accent
     }
+    
+    /// 背景色
     static var background: UIColor {
         return Inspire.current.color.background
     }
+    
+    /// 成功
     static var success: UIColor {
         return Inspire.current.color.success
     }
+    
+    /// 警告
     static var warning: UIColor {
         return Inspire.current.color.warning
     }
+    
+    /// 失败
     static var failure: UIColor {
         return Inspire.current.color.failure
     }
