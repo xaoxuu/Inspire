@@ -197,6 +197,7 @@ extension Inspire {
     /// - Parameter ins: 主题模型
     public static func apply(_ ins: Inspire) {
         shared = ins
+        NotificationCenter.default.post(name: Inspire.Event.didUpdate, object: ins)
     }
     
     /// 导出主题
@@ -231,3 +232,12 @@ extension Inspire {
     }
     
 }
+
+public extension Inspire {
+    public struct Event {
+        public static let didUpdate = Notification.Name.init(rawValue: "Inspire.didUpdate")
+    }
+     
+    
+}
+
