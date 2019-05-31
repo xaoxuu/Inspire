@@ -53,7 +53,7 @@ public struct Inspire {
         /// - body: 正文部分字体名
         /// - number: 数字部分字体名
         /// - code: 代码部分字体名
-        public enum Style: String {
+        public enum Scheme: String {
             case title = "title"
             case body = "body"
             case number = "number"
@@ -61,13 +61,13 @@ public struct Inspire {
         }
         
         /// 标题部分字体名
-        public var title = "ChalkboardSE-Bold"
+        public var title = ""
         /// 正文部分字体名
-        public var body = "ChalkboardSE-Regular"
+        public var body = ""
         /// 数字部分字体名
-        public var number = "Courier"
+        public var number = ""
         /// 代码部分字体名
-        public var code = "Menlo-Regular"
+        public var code = ""
         
         /// 字号缩放倍数
         public var scale = CGFloat(1)
@@ -140,10 +140,10 @@ extension Inspire {
             color.failure = UIColor(dict["failure"] ?? "#F44336")
         }
         if let dict = dictionary["Font"] as? [String: String] {
-            font.title = dict["title"] ?? "Courier"
-            font.body = dict["body"] ?? "Courier"
-            font.number = dict["number"] ?? "Courier"
-            font.code = dict["code"] ?? "Courier"
+            font.title = dict["title"] ?? ""
+            font.body = dict["body"] ?? ""
+            font.number = dict["number"] ?? ""
+            font.code = dict["code"] ?? ""
             if let str = dict["scale"] {
                 if let d = Double(str) {
                     font.scale = CGFloat(d)
@@ -205,10 +205,10 @@ extension Inspire {
     /// - Returns: 字典
     public func export() -> [String: [String: Any]] {
         var result = [String: [String: Any]]()
-        let fontDict = [InFont.Style.title.rawValue: font.title,
-                        InFont.Style.body.rawValue: font.body,
-                        InFont.Style.number.rawValue: font.number,
-                        InFont.Style.code.rawValue: font.code,
+        let fontDict = [InFont.Scheme.title.rawValue: font.title,
+                        InFont.Scheme.body.rawValue: font.body,
+                        InFont.Scheme.number.rawValue: font.number,
+                        InFont.Scheme.code.rawValue: font.code,
                         "scale": String(Double(font.scale))]
         let colorDict = ["theme": color.theme.hexString,
                          "accent": color.accent.hexString,

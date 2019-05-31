@@ -10,7 +10,7 @@ import UIKit
 
 public extension UIFont {
     
-    internal class func getFontName(_ style: Inspire.InFont.Style = .body) -> String {
+    internal class func getFontName(_ style: Inspire.InFont.Scheme = .body) -> String {
         let font = Inspire.current.font
         switch style {
         case .title:
@@ -24,12 +24,12 @@ public extension UIFont {
         }
     }
     
-    class func regular(_ size: CGFloat, for style: Inspire.InFont.Style = .body) -> UIFont {
+    class func regular(_ size: CGFloat, for style: Inspire.InFont.Scheme = .body) -> UIFont {
         let desc = UIFontDescriptor.init(fontAttributes: [.name : getFontName(style)])
         return UIFont.init(descriptor: desc, size: size)
     }
     
-    class func bold(_ size: CGFloat, for style: Inspire.InFont.Style = .body) -> UIFont {
+    class func bold(_ size: CGFloat, for style: Inspire.InFont.Scheme = .body) -> UIFont {
         return regular(size, for: style).boldFont()
     }
     
@@ -45,3 +45,27 @@ public extension UIFont {
     
 }
 
+public extension Inspire {
+    
+    public static func configDefault(font: String, for: Inspire.InFont.Scheme) {
+        switch `for` {
+        case .title:
+            if Inspire.shared.font.title == "" {
+                Inspire.shared.font.title = font
+            }
+        case .body:
+            if Inspire.shared.font.body == "" {
+                Inspire.shared.font.body = font
+            }
+        case .number:
+            if Inspire.shared.font.number == "" {
+                Inspire.shared.font.number = font
+            }
+        case .code:
+            if Inspire.shared.font.code == "" {
+                Inspire.shared.font.code = font
+            }
+        }
+    }
+    
+}
