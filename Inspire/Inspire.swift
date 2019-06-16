@@ -234,7 +234,7 @@ extension Inspire {
 }
 
 public extension Inspire {
-    public struct Event {
+    struct Event {
         public static let didUpdate = Notification.Name.init(rawValue: "Inspire.didUpdate")
     }
      

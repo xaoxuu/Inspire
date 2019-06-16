@@ -12,7 +12,7 @@ import UIKit
 public extension Inspire.InLayout {
     
     /// 设备常量
-    public struct InDevice {
+    struct InDevice {
         
         /// 屏幕尺寸
         public enum ScreenSize: Int {
@@ -140,24 +140,24 @@ public extension Inspire.InLayout {
 }
 
 public extension Inspire {
-    public typealias InScreen = Inspire.InLayout.InScreen
-    public typealias InDevice = Inspire.InLayout.InDevice
+    typealias InScreen = Inspire.InLayout.InScreen
+    typealias InDevice = Inspire.InLayout.InDevice
 }
 
 
 // MARK: - 屏幕布局尺寸
 public extension Inspire.InLayout.InScreen {
     
-    public var bounds: CGRect {
+    var bounds: CGRect {
         return UIScreen.main.bounds
     }
-    public var size: CGSize {
+    var size: CGSize {
         return UIScreen.main.bounds.size
     }
-    public var width: CGFloat {
+    var width: CGFloat {
         return UIScreen.main.bounds.size.width
     }
-    public var height: CGFloat {
+    var height: CGFloat {
         return UIScreen.main.bounds.size.height
     }
     
@@ -200,32 +200,32 @@ public extension Inspire.InLayout.InScreen {
     
     /// 获取当前状态下的屏幕安全区域，此值会更新至safeAreaInsets。
     /// 一般在屏幕旋转之后调用一次。
-    public var updatedSafeAreaInsets: UIEdgeInsets {
+    var updatedSafeAreaInsets: UIEdgeInsets {
         return Inspire.InLayout.InScreen.updatedSafeAreaInsets
     }
     
     /// 状态栏尺寸
-    public var statusBar: CGSize {
+    var statusBar: CGSize {
         return CGSize.init(width: width, height: safeAreaInsets.top)
     }
     
     /// 导航栏尺寸（不含状态栏）
-    public var navBar: CGSize {
+    var navBar: CGSize {
         return CGSize.init(width: UIScreen.main.bounds.size.width, height: 44)
     }
     
     /// 状态栏+导航栏区域尺寸
-    public var topBar: CGSize {
+    var topBar: CGSize {
         return CGSize.init(width: width, height: safeAreaInsets.top + 44)
     }
     
     /// TabBar尺寸
-    public var tabBar: CGSize {
+    var tabBar: CGSize {
         return CGSize.init(width: width, height: 49)
     }
     
     /// TabBar+底部安全区域尺寸
-    public var bottomBar: CGSize {
+    var bottomBar: CGSize {
         return CGSize.init(width: width, height: safeAreaInsets.bottom + 49)
     }
     

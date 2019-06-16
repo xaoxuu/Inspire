@@ -47,8 +47,8 @@ public extension UIFont {
 
 public extension Inspire {
     
-    public static func configDefault(font: String, for: Inspire.InFont.Scheme) {
-        switch `for` {
+    static func configDefault(font: String, for scheme: Inspire.InFont.Scheme) {
+        switch scheme {
         case .title:
             if Inspire.shared.font.title == "" {
                 Inspire.shared.font.title = font
