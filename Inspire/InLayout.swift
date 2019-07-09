@@ -104,14 +104,9 @@ public extension Inspire.InLayout {
             return ScreenSize.unknown
         }()
         
-        /// 取决于设备，无论横竖屏、是否隐藏，此值不变。要想取当前值，用SafeArea实例
+        /// 获取当前状态栏高度
         public static let statusBarWindowHeight: CGFloat = {
-            if let w = UIApplication.shared.value(forKey: "statusBarWindow") as? UIWindow {
-                if let b = w.value(forKey: "statusBar") as? UIView {
-                    return b.frame.size.height
-                }
-            }
-            return 20
+            return UIApplication.shared.statusBarFrame.size.height
         }()
         
         /// 竖屏时底部的安全区域高度
@@ -178,6 +173,16 @@ public extension Inspire.InLayout.InScreen {
     /// - Returns: 当前屏幕安全区域
     private static func getCurrentSafeAreaInsets() -> UIEdgeInsets {
         debugPrint("获取当前屏幕安全区域")
+        for w in UIApplication.shared.windows {
+            if w.isKeyWindow == true, let vc = w.rootViewController {
+                if #available(iOS 11.0, *) {
+                    print("vc.view.safeAreaInsets: ", vc.view.safeAreaInsets)
+                    return vc.view.safeAreaInsets
+                } else {
+                    // Fallback on earlier versions
+                }
+            }
+        }
         var top = CGFloat(0), left = CGFloat(0), bottom = CGFloat(0), right = CGFloat(0)
         if UIApplication.shared.statusBarOrientation == .portrait {
             top = Inspire.InLayout.InDevice.statusBarWindowHeight
