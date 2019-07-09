@@ -24,6 +24,7 @@
 		CD07B9662249BE6300C8698C /* InColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InColor.swift; sourceTree = "<group>"; };
 		CD07B9682249BE7200C8698C /* InLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InLayout.swift; sourceTree = "<group>"; };
 		CD0E5366224CA0B90057157B /* InCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InCache.swift; sourceTree = "<group>"; };
+		CD50291022D4689400CBE005 /* Inspire.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Inspire.podspec; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,6 +41,7 @@
 		CD07B94D2249BE0800C8698C = {
 			isa = PBXGroup;
 			children = (
+				CD50291022D4689400CBE005 /* Inspire.podspec */,
 				CD07B9592249BE0800C8698C /* Inspire */,
 				CD07B9582249BE0800C8698C /* Products */,
 			);
