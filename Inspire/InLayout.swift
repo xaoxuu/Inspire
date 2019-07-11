@@ -131,6 +131,36 @@ public extension Inspire.InLayout {
         
     }
     
+    /// 获取某个视图控制器的布局安全距离
+    /// - Parameter viewController: 视图控制器
+    func safeAreaInsets(for viewController: UIViewController) -> UIEdgeInsets {
+        if #available(iOS 11.0, *) {
+            return viewController.view.safeAreaInsets
+        } else {
+            // Fallback on earlier versions
+            return Inspire.shared.screen.safeAreaInsets
+        }
+    }
+    
+    /// 获取某个视图控制器的顶部栏（状态栏+导航栏）的高度
+    /// - Parameter viewController: 视图控制器
+    func topBarHeight(for viewController: UIViewController?) -> CGFloat {
+        if let nav = viewController as? UINavigationController {
+            var h = nav.navigationBar.frame.size.height
+            h += safeAreaInsets(for: nav).top
+            return h
+        } else if let vc = viewController as? UIViewController {
+            return safeAreaInsets(for: vc).top + (vc.navigationController?.navigationBar.frame.size.height ?? Inspire.shared.screen.navBar.height)
+        } else {
+            return 0
+        }
+    }
+    
+    /// 获取某个视图控制器的底部栏（Tabbar和底部安全区域）高度
+    /// - Parameter viewController: 视图控制器
+    func bottomBarHeight(for viewController: UIViewController) -> CGFloat {
+        return safeAreaInsets(for: viewController).bottom + (viewController.tabBarController?.tabBar.frame.height ?? Inspire.shared.screen.tabBar.height)
+    }
     
 }
 
@@ -140,7 +170,7 @@ public extension Inspire {
 }
 
 
-// MARK: - 屏幕布局尺寸
+// MARK: - 屏幕布局尺寸常量
 public extension Inspire.InLayout.InScreen {
     
     var bounds: CGRect {
@@ -216,12 +246,12 @@ public extension Inspire.InLayout.InScreen {
     
     /// 导航栏尺寸（不含状态栏）
     var navBar: CGSize {
-        return CGSize.init(width: UIScreen.main.bounds.size.width, height: 44)
+        return CGSize.init(width: width, height: 44)
     }
     
     /// 状态栏+导航栏区域尺寸
     var topBar: CGSize {
-        return CGSize.init(width: width, height: safeAreaInsets.top + 44)
+        return CGSize.init(width: width, height: safeAreaInsets.top + navBar.height)
     }
     
     /// TabBar尺寸
@@ -231,7 +261,7 @@ public extension Inspire.InLayout.InScreen {
     
     /// TabBar+底部安全区域尺寸
     var bottomBar: CGSize {
-        return CGSize.init(width: width, height: safeAreaInsets.bottom + 49)
+        return CGSize.init(width: width, height: safeAreaInsets.bottom + tabBar.height)
     }
     
     
