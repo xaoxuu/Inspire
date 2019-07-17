@@ -149,7 +149,7 @@ public extension Inspire.InLayout {
             var h = nav.navigationBar.frame.size.height
             h += safeAreaInsets(for: nav).top
             return h
-        } else if let vc = viewController as? UIViewController {
+        } else if let vc = viewController {
             return safeAreaInsets(for: vc).top + (vc.navigationController?.navigationBar.frame.size.height ?? Inspire.shared.screen.navBar.height)
         } else {
             return 0
