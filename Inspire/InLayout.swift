@@ -132,10 +132,10 @@ public extension Inspire.InLayout {
         
     }
     
-    @available(iOS 13.0, *)
-    func statusBarWindowHeight(for window: UIWindow) -> CGRect {
-        return window.windowScene?.statusBarManager?.statusBarFrame ?? .zero
-    }
+//    @available(iOS 13.0, *)
+//    func statusBarWindowHeight(for window: UIWindow) -> CGRect {
+//        return window.windowScene?.statusBarManager?.statusBarFrame ?? .zero
+//    }
     
     /// 获取某个视图控制器的布局安全距离
     /// - Parameter viewController: 视图控制器
