@@ -8,7 +8,6 @@
 
 import UIKit
 import Inspire
-import AXKit
 
 class ViewController: UIViewController {
 
@@ -35,20 +34,6 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-//        for str in UIFont.familyNames {
-//            print(UIFont.fontNames(forFamilyName: str))
-//        }
-//        view.backgroundColor = UIColor.failure
-        Inspire.restore()
-        
-        view.backgroundColor = Inspire.current.color.background
-        
-        
-//        ins.const.safeAreaInsets.bottom
-//        ins.const.topBarHeight
-//        ins.layout.screen.height
-//        ins.const.safeAreaInsets.bottom
-//        ins.layout.screen
         
         
     }

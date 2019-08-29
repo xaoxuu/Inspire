@@ -9,6 +9,5 @@ use_frameworks!
 target 'InspireExample' do
 
   pod 'Inspire', :path => '..'
-  pod 'AXKit', '0.3.10'
   
 end

@@ -1,19 +1,16 @@
 PODS:
-  - AXKit (0.3.10)
-  - Inspire (1.0.3)
+  - Inspire (1.0.5)
 
 DEPENDENCIES:
-  - AXKit (= 0.3.10)
   - Inspire (from `..`)
 
 EXTERNAL SOURCES:
   Inspire:
-    :path: ..
+    :path: ".."
 
 SPEC CHECKSUMS:
-  AXKit: ea0bc94ddf3827f004521da25aecee91b480fc97
-  Inspire: 80aef9895e85ab8a0a65ffff4b86d91f220a55ce
+  Inspire: fcd7b5ed3b30506b7f04645719b52e0a89884cd4
 
-PODFILE CHECKSUM: ebc38e09174ee202b0239e1a7123cb86f7622591
+PODFILE CHECKSUM: e5b4001de3fccf5c5d3bed479f134af4837848da
 
-COCOAPODS: 1.3.1
+COCOAPODS: 1.7.5
