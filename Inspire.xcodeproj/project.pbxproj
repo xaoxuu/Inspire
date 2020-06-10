@@ -42,6 +42,7 @@
 			isa = PBXGroup;
 			children = (
 				CD50291022D4689400CBE005 /* Inspire.podspec */,
+				CD918D1E24909C2C00C0DC34 /* Source */,
 				CD07B9592249BE0800C8698C /* Inspire */,
 				CD07B9582249BE0800C8698C /* Products */,
 			);
@@ -58,15 +59,22 @@
 		CD07B9592249BE0800C8698C /* Inspire */ = {
 			isa = PBXGroup;
 			children = (
+				CD07B95B2249BE0800C8698C /* Info.plist */,
+			);
+			path = Inspire;
+			sourceTree = "<group>";
+		};
+		CD918D1E24909C2C00C0DC34 /* Source */ = {
+			isa = PBXGroup;
+			children = (
 				CD07B95A2249BE0800C8698C /* Inspire.h */,
 				CD07B9622249BE2500C8698C /* Inspire.swift */,
 				CD0E5366224CA0B90057157B /* InCache.swift */,
 				CD07B9642249BE5100C8698C /* InFont.swift */,
 				CD07B9662249BE6300C8698C /* InColor.swift */,
 				CD07B9682249BE7200C8698C /* InLayout.swift */,
-				CD07B95B2249BE0800C8698C /* Info.plist */,
 			);
-			path = Inspire;
+			path = Source;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

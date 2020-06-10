@@ -12,7 +12,7 @@ let package = Package(
         .target(
             name: "Inspire",
             dependencies: [],
-            path: "Inspire"
+            path: "Source"
         )
     ],
     swiftLanguageVersions: [.v5]
