@@ -3,7 +3,7 @@
 //  Inspire
 //
 //  Created by xaoxuu on 2019/3/26.
-//  Copyright © 2019 Titan Studio. All rights reserved.
+//  Copyright © 2019 xaoxuu.com. All rights reserved.
 //
 
 import UIKit
@@ -131,7 +131,7 @@ extension Inspire {
     ///
     /// - Parameter dictionary: 字典
     public init(_ dictionary: [String: Any]) {
-        if let dict = dictionary["Color"] as? [String: String] {
+        if let dict = dictionary["color"] as? [String: String] {
             color.theme = UIColor(dict["theme"] ?? "#FF6868")
             color.accent = UIColor(dict["accent"] ?? "#1BCBFA")
             color.background = UIColor(dict["background"] ?? "#EFEFEF")
@@ -139,7 +139,7 @@ extension Inspire {
             color.warning = UIColor(dict["warning"] ?? "#FDBD41")
             color.failure = UIColor(dict["failure"] ?? "#F44336")
         }
-        if let dict = dictionary["Font"] as? [String: String] {
+        if let dict = dictionary["font"] as? [String: String] {
             font.title = dict["title"] ?? ""
             font.body = dict["body"] ?? ""
             font.number = dict["number"] ?? ""
@@ -150,7 +150,7 @@ extension Inspire {
                 }
             }
         }
-        if let dict = dictionary["Layout"] as? [String: Any] {
+        if let dict = dictionary["layout"] as? [String: Any] {
             if let str = dict["padding"] as? String {
                 if let d = Double(str) {
                     layout.padding = CGFloat(d)
@@ -225,9 +225,9 @@ extension Inspire {
                                 "regular": String(Double(layout.cornerRadius.regular)),
                                 "small": String(Double(layout.cornerRadius.small))]
         layoutDict["cornerRadius"] = cornerRadiusDict
-        result["Font"] = fontDict
-        result["Color"] = colorDict
-        result["Layout"] = layoutDict
+        result["font"] = fontDict
+        result["color"] = colorDict
+        result["layout"] = layoutDict
         return result
     }
     

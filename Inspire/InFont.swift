@@ -3,7 +3,7 @@
 //  Inspire
 //
 //  Created by xaoxuu on 2019/3/26.
-//  Copyright © 2019 Titan Studio. All rights reserved.
+//  Copyright © 2019 xaoxuu.com. All rights reserved.
 //
 
 import UIKit
