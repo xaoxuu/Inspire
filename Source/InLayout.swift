@@ -37,6 +37,7 @@ public extension Inspire.InLayout {
                     if ss == .iPhone3_5 || ss == .iPhone4_0 || ss == .iPhone4_7 || ss == .iPhone5_5 {
                         return false
                     } else {
+                        // 新推出的新尺寸的全面屏iPhone
                         return true
                     }
                 }
@@ -49,6 +50,7 @@ public extension Inspire.InLayout {
                     if ss == .iPad7_9 || ss == .iPad9_7 || ss == .iPad10_5 || ss == .iPad12_9 {
                         return false
                     } else {
+                        // 新推出的新尺寸的全面屏iPad
                         return true
                     }
                 }
@@ -76,7 +78,8 @@ public extension Inspire.InLayout {
                         break
                     }
                 }
-                return ScreenSize.iPad9_7
+                // 尚未兼容的新尺寸的iPad默认被认为是11寸
+                return ScreenSize.iPad11
             } else if UIDevice.current.userInterfaceIdiom == .phone {
                 if let s = UIScreen.main.currentMode?.size {
                     switch s {
@@ -98,9 +101,11 @@ public extension Inspire.InLayout {
                         break
                     }
                 } else {
-                    return ScreenSize.iPhone4_7
+                    // 尚未兼容的新尺寸的iPhone默认被认为是6.1寸
+                    return ScreenSize.iPhone6_1
                 }
             }
+            // 暂不支持 iPhone、iPad 以外的设备
             return ScreenSize.unknown
         }()
         
