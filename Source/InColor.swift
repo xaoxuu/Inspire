@@ -123,7 +123,7 @@ public extension UIColor {
         let hex = filter(hex: hex)
         let length = hex.length
         guard length == 3 || length == 4 || length == 6 || length == 8 else {
-            debugPrint("无效的hex")
+            print("无效的hex")
             self.init("000")
             return
         }

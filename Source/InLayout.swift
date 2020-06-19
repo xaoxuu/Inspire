@@ -213,7 +213,6 @@ public extension Inspire.InLayout.InScreen {
     ///
     /// - Returns: 当前屏幕安全区域
     private static func getCurrentSafeAreaInsets() -> UIEdgeInsets {
-        debugPrint("获取当前屏幕安全区域")
         var top = CGFloat(0), left = CGFloat(0), bottom = CGFloat(0), right = CGFloat(0)
         if UIApplication.shared.statusBarOrientation == .portrait {
             top = Inspire.InLayout.InDevice.statusBarWindowHeight
