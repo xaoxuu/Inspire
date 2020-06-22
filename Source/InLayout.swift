@@ -111,7 +111,11 @@ public extension Inspire.InLayout {
         
         /// 获取当前状态栏高度
         public static var statusBarWindowHeight: CGFloat {
-            return UIApplication.shared.statusBarFrame.size.height
+            if #available(iOS 13.0, *) {
+                return ipr.windowScene?.statusBarManager?.statusBarFrame.height ?? .zero
+            } else {
+                return UIApplication.shared.statusBarFrame.size.height
+            }
         }
         
         
@@ -127,20 +131,13 @@ public extension Inspire.InLayout {
         
         /// 横屏时底部的安全区域高度
         public static let bottomSafeAreaHeightOnLandscape: CGFloat = {
-            if screenSize.isNewPhone {
-                return 21
-            } else if screenSize == .iPad11 {
+            if screenSize.isNewPhone || screenSize.isNewPad {
                 return 21
             }
             return 0
         }()
         
     }
-    
-//    @available(iOS 13.0, *)
-//    func statusBarWindowHeight(for window: UIWindow) -> CGRect {
-//        return window.windowScene?.statusBarManager?.statusBarFrame ?? .zero
-//    }
     
     /// 获取某个视图控制器的布局安全距离
     /// - Parameter viewController: 视图控制器
@@ -181,7 +178,7 @@ public extension Inspire {
 }
 
 
-// MARK: - 屏幕布局尺寸常量
+// MARK: - 窗口布局尺寸常量
 public extension Inspire.InLayout.InScreen {
     
     var bounds: CGRect {
@@ -197,46 +194,19 @@ public extension Inspire.InLayout.InScreen {
         return UIScreen.main.bounds.size.height
     }
     
-    /// 屏幕布局安全区域。
-    /// 如果支持横屏，当改变屏幕方向后需要调用 updatedSafeAreaInsets 重新获取
-    private static var safeAreaInsets: UIEdgeInsets = {
-        return getCurrentSafeAreaInsets()
-    }()
-    
-    /// 屏幕布局安全区域。
-    /// 如果支持横屏，当改变屏幕方向后需要调用 updatedSafeAreaInsets 重新获取
+    /// 根控制器的屏幕布局安全区域
     var safeAreaInsets: UIEdgeInsets {
-        return Inspire.InLayout.InScreen.safeAreaInsets
-    }
-    
-    /// 获取当前屏幕安全区域
-    ///
-    /// - Returns: 当前屏幕安全区域
-    private static func getCurrentSafeAreaInsets() -> UIEdgeInsets {
-        var top = CGFloat(0), left = CGFloat(0), bottom = CGFloat(0), right = CGFloat(0)
-        if UIApplication.shared.statusBarOrientation == .portrait {
-            top = Inspire.InLayout.InDevice.statusBarWindowHeight
-            bottom = Inspire.InLayout.InDevice.bottomSafeAreaHeightOnPortrait
+        if #available(iOS 11.0, *) {
+            if let rootVC = Inspire.shared.rootVC {
+                return rootVC.view.safeAreaInsets
+            } else {
+                // 拿不到根控制器，在 Inspire.shared.rootVC 里已经抛出了警告
+                return .zero
+            }
         } else {
-            bottom = Inspire.InLayout.InDevice.bottomSafeAreaHeightOnLandscape
-            left = Inspire.InLayout.InDevice.statusBarWindowHeight
-            right = Inspire.InLayout.InDevice.statusBarWindowHeight
+            // iOS 11 以下的版本不存在 safeAreaInsets
+            return .zero
         }
-        let inset = UIEdgeInsets.init(top: top, left: left, bottom: bottom, right: right)
-        return inset
-    }
-    
-    /// 获取当前状态下的屏幕安全区域，此值会更新至safeAreaInsets。
-    /// 一般在屏幕旋转之后调用一次。
-    private static var updatedSafeAreaInsets: UIEdgeInsets {
-        safeAreaInsets = Inspire.InLayout.InScreen.getCurrentSafeAreaInsets()
-        return safeAreaInsets
-    }
-    
-    /// 获取当前状态下的屏幕安全区域，此值会更新至safeAreaInsets。
-    /// 一般在屏幕旋转之后调用一次。
-    var updatedSafeAreaInsets: UIEdgeInsets {
-        return Inspire.InLayout.InScreen.updatedSafeAreaInsets
     }
     
     /// 状态栏尺寸

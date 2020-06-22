@@ -8,6 +8,8 @@
 
 import UIKit
 
+internal let ipr = Inspire.shared
+
 public struct Inspire {
 
     /// 当前实例
@@ -114,6 +116,56 @@ public struct Inspire {
     
     /// 常量
     public var screen = InLayout.InScreen()
+    
+    private static var currentRootVC: UIViewController?
+    /// 默认可以自动获取，如果获取失败请手动设置
+    public var rootVC: UIViewController? {
+        get {
+            if let vc = Inspire.currentRootVC {
+                return vc
+            } else {
+                // 尝试获取RootVC
+                let ws = UIApplication.shared.windows.filter { (w) -> Bool in
+                    // 去除掉诸如 UITextEffectsWindow 这样的类，去掉隐藏的Window
+                    if "\(type(of:w))" == "UIWindow" && w.isHidden == false && w.windowLevel == .normal {
+                        return true
+                    } else {
+                        return false
+                    }
+                }
+                for w in ws {
+                    if let vc = w.rootViewController {
+                        Inspire.currentRootVC = vc
+                        return vc
+                    }
+                }
+                print("⚠️自动获取根控制器失败，请手动设置根控制器")
+                return nil
+            }
+        }
+        set {
+            Inspire.currentRootVC = newValue
+        }
+    }
+    
+    /// 默认可以自动获取，如果获取失败请手动设置
+    @available(iOS 13.0, *)
+    private static var currentWindowScene: UIWindowScene?
+    
+    /// 默认可以自动获取，如果获取失败请手动设置
+    @available(iOS 13.0, *)
+    public var windowScene: UIWindowScene? {
+        get {
+            if let scene = Inspire.currentWindowScene {
+                return scene
+            } else {
+                return UIApplication.shared.windows.last?.windowScene
+            }
+        }
+        set {
+            Inspire.currentWindowScene = newValue
+        }
+    }
     
     /// 创建默认实例
     public init() {

@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Inspire
+let ipr = Inspire.shared
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

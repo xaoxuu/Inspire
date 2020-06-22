@@ -30,40 +30,52 @@ class ViewController: UIViewController {
     @IBOutlet weak var caption1: UILabel!
     
     @IBOutlet weak var caption2: UILabel!
+    
+    let mask = UIView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
-        
         
     }
 
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        Inspire.current.color.failure = UIColor.lightGray
-//        view.backgroundColor = UIColor.failure
+
+        let ipr = Inspire.current
         
-//        print(Inspire.current.layout.safeAreaInsets)
-//        print(Inspire.current.layout.updatedSafeAreaInsets)
-//        print(Inspire.current.layout.safeAreaInsets)
+        print("RootVC.safeAreaInsets: \(ipr.layout.safeAreaInsets(for: ipr.rootVC ?? self))")
+        print("self.safeAreaInsets: \(Inspire.shared.layout.safeAreaInsets(for: self))")
         
-//        view.backgroundColor = Inspire.current.color.background
-//
-//        DispatchQueue.main.asyncAfter(deadline: .now()+2) {
-//            Inspire.current.color.background = Inspire.current.color.accent
-//            Inspire.current.cache()
-//            self.view.backgroundColor = Inspire.current.color.background
-//        }
-        let ins = Inspire.current
-        print(Inspire.current.screen.updatedSafeAreaInsets)
-        print("safeAreaInsets", ins.screen.safeAreaInsets)
-        print("bounds", ins.screen.bounds)
-        print("navBar", ins.screen.navBar)
-        print("statusBar", ins.screen.statusBar)
-        print("topBar", ins.screen.topBar)
-        print("tabBar", ins.screen.tabBar) 
-        print("bottomBar", ins.screen.bottomBar)
+        print("-----screen:")
+        print("safeAreaInsets", ipr.screen.safeAreaInsets)
+        print("bounds", ipr.screen.bounds)
+        print("navBar", ipr.screen.navBar)
+        print("statusBar", ipr.screen.statusBar)
+        print("topBar", ipr.screen.topBar)
+        print("tabBar", ipr.screen.tabBar)
+        print("bottomBar", ipr.screen.bottomBar)
         
+        print("-----")
+//        print(ipr.)
+        
+        mask.backgroundColor = .init(white: 0.9, alpha: 1)
+        let safeAreaInsets = Inspire.shared.screen.safeAreaInsets
+        print(safeAreaInsets)
+        mask.frame = .init(x: safeAreaInsets.left, y: safeAreaInsets.top, width: view.bounds.width - safeAreaInsets.left - safeAreaInsets.right, height: view.bounds.height - safeAreaInsets.top - safeAreaInsets.bottom)
+        view.insertSubview(mask, at: 0)
+        
+        
+        
+        
+    }
+    
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let vc = NewVC()
+        vc.view.backgroundColor = .white
+        
+        
+        present(vc, animated: true, completion: nil)
     }
 
 }

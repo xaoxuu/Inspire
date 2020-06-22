@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -15,6 +15,7 @@
 		CD07B99F2249BFCE00C8698C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD07B99D2249BFCE00C8698C /* LaunchScreen.storyboard */; };
 		CD07B9A72249C0CB00C8698C /* MyInspire.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD07B9A62249C0CB00C8698C /* MyInspire.swift */; };
 		CD9806E8224A0EDF00222E7F /* theme.json in Resources */ = {isa = PBXBuildFile; fileRef = CD9806E7224A0EDF00222E7F /* theme.json */; };
+		CDF2C58B24A0B437002ECDD5 /* NewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF2C58A24A0B437002ECDD5 /* NewVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		CD07B9A02249BFCE00C8698C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CD07B9A62249C0CB00C8698C /* MyInspire.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyInspire.swift; sourceTree = "<group>"; };
 		CD9806E7224A0EDF00222E7F /* theme.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = theme.json; sourceTree = "<group>"; };
+		CDF2C58A24A0B437002ECDD5 /* NewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +86,7 @@
 			children = (
 				CD07B9942249BFCD00C8698C /* AppDelegate.swift */,
 				CD07B9962249BFCD00C8698C /* ViewController.swift */,
+				CDF2C58A24A0B437002ECDD5 /* NewVC.swift */,
 				CD07B9A62249C0CB00C8698C /* MyInspire.swift */,
 				CD9806E7224A0EDF00222E7F /* theme.json */,
 				CD07B9982249BFCD00C8698C /* Main.storyboard */,
@@ -212,6 +215,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CD07B9972249BFCD00C8698C /* ViewController.swift in Sources */,
+				CDF2C58B24A0B437002ECDD5 /* NewVC.swift in Sources */,
 				CD07B9A72249C0CB00C8698C /* MyInspire.swift in Sources */,
 				CD07B9952249BFCD00C8698C /* AppDelegate.swift in Sources */,
 			);
@@ -361,7 +365,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = WU2WFZ2B66;
+				DEVELOPMENT_TEAM = 34W5TB5KD2;
 				INFOPLIST_FILE = InspireExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -369,7 +373,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.xaoxuu.InspireExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = developAll;
+				PROVISIONING_PROFILE_SPECIFIER = "Dev All";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -381,7 +385,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = WU2WFZ2B66;
+				DEVELOPMENT_TEAM = 34W5TB5KD2;
 				INFOPLIST_FILE = InspireExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -389,7 +393,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.xaoxuu.InspireExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = developAll;
+				PROVISIONING_PROFILE_SPECIFIER = "Dev All";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
