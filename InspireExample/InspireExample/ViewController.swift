@@ -31,6 +31,8 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var caption2: UILabel!
     
+    @IBOutlet weak var windowScene: UILabel!
+    
     let mask = UIView()
     
     override func viewDidLoad() {
@@ -66,7 +68,11 @@ class ViewController: UIViewController {
         view.insertSubview(mask, at: 0)
         
         
-        
+        if #available(iOS 13.0, *) {
+            windowScene.text = UIWindowScene.currentWindowScene?.description
+        } else {
+            // Fallback on earlier versions
+        }
         
     }
     
@@ -77,6 +83,7 @@ class ViewController: UIViewController {
         
         present(vc, animated: true, completion: nil)
     }
+    
 
 }
 
