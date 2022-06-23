@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension CALayer {
+public extension CALayer {
     
     /// 切部分圆角
     /// - Parameters:

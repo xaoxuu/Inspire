@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'Inspire'
-  s.version = "2.1.0"
+  s.version = "2.2.0"
   s.license = 'MIT'
   s.summary = '主题模块，用于提供UI常量配置。'
   s.homepage = "http://xaoxuu.com"
