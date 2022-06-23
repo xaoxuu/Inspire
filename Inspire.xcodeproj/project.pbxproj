@@ -13,6 +13,7 @@
 		CD07B9672249BE6300C8698C /* InColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD07B9662249BE6300C8698C /* InColor.swift */; };
 		CD07B9692249BE7200C8698C /* InLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD07B9682249BE7200C8698C /* InLayout.swift */; };
 		CD0E5367224CA0B90057157B /* InCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0E5366224CA0B90057157B /* InCache.swift */; };
+		CD77ED7C2864417B006481F6 /* InLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD77ED7B2864417B006481F6 /* InLayer.swift */; };
 		CDB442A226A67CBB00D6FEAA /* InWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB442A126A67CBB00D6FEAA /* InWindow.swift */; };
 /* End PBXBuildFile section */
 
@@ -26,6 +27,7 @@
 		CD07B9682249BE7200C8698C /* InLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InLayout.swift; sourceTree = "<group>"; };
 		CD0E5366224CA0B90057157B /* InCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InCache.swift; sourceTree = "<group>"; };
 		CD50291022D4689400CBE005 /* Inspire.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Inspire.podspec; sourceTree = "<group>"; };
+		CD77ED7B2864417B006481F6 /* InLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InLayer.swift; sourceTree = "<group>"; };
 		CDB442A126A67CBB00D6FEAA /* InWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InWindow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -76,6 +78,7 @@
 				CD07B9662249BE6300C8698C /* InColor.swift */,
 				CD07B9682249BE7200C8698C /* InLayout.swift */,
 				CDB442A126A67CBB00D6FEAA /* InWindow.swift */,
+				CD77ED7B2864417B006481F6 /* InLayer.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -164,6 +167,7 @@
 				CD07B9652249BE5100C8698C /* InFont.swift in Sources */,
 				CD07B9632249BE2500C8698C /* Inspire.swift in Sources */,
 				CD0E5367224CA0B90057157B /* InCache.swift in Sources */,
+				CD77ED7C2864417B006481F6 /* InLayer.swift in Sources */,
 				CDB442A226A67CBB00D6FEAA /* InWindow.swift in Sources */,
 				CD07B9692249BE7200C8698C /* InLayout.swift in Sources */,
 			);
