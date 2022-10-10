@@ -17,24 +17,32 @@ public extension Inspire.InLayout {
         /// 屏幕尺寸
         public enum ScreenSize: Int {
             case unknown
-            case iPhone3_5
-            case iPhone4_0
-            case iPhone4_7
-            case iPhone5_5
-            case iPhone5_8
-            case iPhone6_1
-            case iPhone6_5
-            case iPad7_9
-            case iPad9_7
-            case iPad10_5
-            case iPad11
-            case iPad12_9
+            case iPhone_Legacy_3_5
+            case iPhone_Legacy_4_0
+            case iPhone_Legacy_4_7
+            case iPhone_Legacy_5_5
+            case iPhone_New_5_8 // iPhone X
+            case iPhone_New_6_1 // iPhone XR | 11
+            case iPhone_New_6_5 // iPhone XS Max、11 Pro Max
+            case iPhone_New_5_4 // iPhone 12 mini | 13 mini
+            case iPhone_New_6_1_G2 // iPhone 12、12 Pro、13、13 Pro、14
+            case iPhone_New_6_7 // 12 Pro Max、13 Pro Max、14 Plus
+            case iPhone_New_6_1_G3 // 14 Pro
+            case iPhone_New_6_7_G2 // 14 Pro Max
+            case iPad_Legacy_7_9
+            case iPad_Legacy_9_7
+            case iPad_Legacy_10_2
+            case iPad_Legacy_10_5
+            case iPad_New_7_9 // mini 6
+            case iPad_New_10_9 // Air 5
+            case iPad_New_11 // iPad Pro 11
+            case iPad_New_12_9 // iPad Pro 12.9
             
             /// 是否是全面屏手机
             public var isNewPhone: Bool {
                 if UIDevice.current.userInterfaceIdiom == .phone {
                     let ss = Inspire.InLayout.InDevice.screenSize
-                    if ss == .iPhone3_5 || ss == .iPhone4_0 || ss == .iPhone4_7 || ss == .iPhone5_5 {
+                    if ss == .iPhone_Legacy_3_5 || ss == .iPhone_Legacy_4_0 || ss == .iPhone_Legacy_4_7 || ss == .iPhone_Legacy_5_5 {
                         return false
                     } else {
                         // 新推出的新尺寸的全面屏iPhone
@@ -47,7 +55,7 @@ public extension Inspire.InLayout {
             public var isNewPad: Bool {
                 if UIDevice.current.userInterfaceIdiom == .pad {
                     let ss = Inspire.InLayout.InDevice.screenSize
-                    if ss == .iPad7_9 || ss == .iPad9_7 || ss == .iPad10_5 || ss == .iPad12_9 {
+                    if ss == .iPad_Legacy_7_9 || ss == .iPad_Legacy_9_7 || ss == .iPad_Legacy_10_5 || ss == .iPad_New_12_9 {
                         return false
                     } else {
                         // 新推出的新尺寸的全面屏iPad
@@ -65,44 +73,60 @@ public extension Inspire.InLayout {
                 if let s = UIScreen.main.currentMode?.size {
                     switch s {
                     case CGSize(width: 1536, height: 2048):
-                        return ScreenSize.iPad7_9
+                        return ScreenSize.iPad_Legacy_7_9
                     case CGSize(width: 1536, height: 2048):
-                        return ScreenSize.iPad9_7
+                        return ScreenSize.iPad_Legacy_9_7
+                    case CGSize(width: 1620, height: 2160):
+                        return ScreenSize.iPad_Legacy_10_2
                     case CGSize(width: 1668, height: 2224):
-                        return ScreenSize.iPad10_5
+                        return ScreenSize.iPad_Legacy_10_5
+                    case CGSize(width: 1488, height: 2266):
+                        return ScreenSize.iPad_New_7_9
+                    case CGSize(width: 1640, height: 2360):
+                        return ScreenSize.iPad_New_10_9
                     case CGSize(width: 1668, height: 2388):
-                        return ScreenSize.iPad11
+                        return ScreenSize.iPad_New_11
                     case CGSize(width: 2048, height: 2732):
-                        return ScreenSize.iPad12_9
+                        return ScreenSize.iPad_New_12_9
                     default:
                         break
                     }
                 }
                 // 尚未兼容的新尺寸的iPad默认被认为是11寸
-                return ScreenSize.iPad11
+                return ScreenSize.iPad_New_11
             } else if UIDevice.current.userInterfaceIdiom == .phone {
                 if let s = UIScreen.main.currentMode?.size {
                     switch s {
                     case CGSize(width: 320, height: 480), CGSize(width: 640, height: 960):
-                        return ScreenSize.iPhone3_5
+                        return ScreenSize.iPhone_Legacy_3_5
                     case CGSize(width: 640, height: 1136):
-                        return ScreenSize.iPhone4_0
+                        return ScreenSize.iPhone_Legacy_4_0
                     case CGSize(width: 750, height: 1334):
-                        return ScreenSize.iPhone4_7
+                        return ScreenSize.iPhone_Legacy_4_7
                     case CGSize(width: 1242, height: 2208):
-                        return ScreenSize.iPhone5_5
+                        return ScreenSize.iPhone_Legacy_5_5
                     case CGSize(width: 1125, height: 2436):
-                        return ScreenSize.iPhone5_8
+                        return ScreenSize.iPhone_New_5_8
                     case CGSize(width: 828, height: 1792):
-                        return ScreenSize.iPhone6_1
+                        return ScreenSize.iPhone_New_6_1
                     case CGSize(width: 1242, height: 2688):
-                        return ScreenSize.iPhone6_5
+                        return ScreenSize.iPhone_New_6_5
+                    case CGSize(width: 1080, height: 2340):
+                        return ScreenSize.iPhone_New_5_4
+                    case CGSize(width: 1170, height: 2532):
+                        return ScreenSize.iPhone_New_6_1_G2
+                    case CGSize(width: 1284, height: 2778):
+                        return ScreenSize.iPhone_New_6_7
+                    case CGSize(width: 1179, height: 2556):
+                        return ScreenSize.iPhone_New_6_1_G3
+                    case CGSize(width: 1290, height: 2796):
+                        return ScreenSize.iPhone_New_6_7_G2
                     default:
                         break
                     }
                 } else {
                     // 尚未兼容的新尺寸的iPhone默认被认为是6.1寸
-                    return ScreenSize.iPhone6_1
+                    return ScreenSize.iPhone_New_6_1_G2
                 }
             }
             // 暂不支持 iPhone、iPad 以外的设备
@@ -123,7 +147,7 @@ public extension Inspire.InLayout {
         public static let bottomSafeAreaHeightOnPortrait: CGFloat = {
             if screenSize.isNewPhone {
                 return 34
-            } else if screenSize == .iPad11 {
+            } else if screenSize == .iPad_New_11 {
                 return 21
             }
             return 0

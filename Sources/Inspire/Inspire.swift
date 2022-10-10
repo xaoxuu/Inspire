@@ -125,7 +125,13 @@ public struct Inspire {
                 return vc
             } else {
                 // 尝试获取RootVC
-                let ws = UIApplication.shared.windows.filter { (w) -> Bool in
+                var windows: [UIWindow]
+                if #available(iOS 13.0, *) {
+                    windows = windowScene?.windows ?? []
+                } else {
+                    windows = UIApplication.shared.windows
+                }
+                let ws = windows.filter { (w) -> Bool in
                     // 去除掉诸如 UITextEffectsWindow 这样的类，去掉隐藏的Window
                     if "\(type(of:w))" == "UIWindow" && w.isHidden == false && w.windowLevel == .normal {
                         return true
@@ -159,7 +165,7 @@ public struct Inspire {
             if let scene = Inspire.currentWindowScene {
                 return scene
             } else {
-                return UIApplication.shared.windows.last?.windowScene
+                return UIWindowScene.currentWindowScene
             }
         }
         set {
